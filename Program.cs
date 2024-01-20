@@ -94,8 +94,9 @@ namespace exerciseCountries
                 Console.WriteLine("The population density for each country:");
                 foreach (Land land in LandLista)
                 {
-                    double populationDensity = (double)land.Inhabitant / land.Surface;
-                    Console.WriteLine($"Country: {land.Name}, Density: {populationDensity}");
+                    //double populationDensity = (double)land.Inhabitant / land.Surface;
+                    //Console.WriteLine($"Country: {land.Name}, Density: {populationDensity}");
+                    Console.WriteLine($"Country: {land.Name}, Density: {land.Inhabitant / land.Surface}");
                 }
                 Console.WriteLine("Press enter to continue...");
                 Console.ReadLine();
@@ -105,15 +106,15 @@ namespace exerciseCountries
             {
                 LandLista.Sort((country1, country2) =>
                 {
-                    double density1 = (double)country1.Inhabitant / country1.Surface;
-                    double density2 = (double)country2.Inhabitant / country2.Surface;
+                    int density1 = (int)country1.Inhabitant / country1.Surface;
+                    int density2 = (int)country2.Inhabitant / country2.Surface;
                     return density1.CompareTo(density2);
                 });
 
                 Console.WriteLine("Countries sorted by population density:");
                 foreach (var country in LandLista)
                 {
-                    double density = (double)country.Inhabitant / country.Surface;
+                    int density = (int)country.Inhabitant / country.Surface;
                     Console.WriteLine($"{country.Name}: Population Density - {density} inhabitants per square unit");
                 }
                 Console.WriteLine("Press enter to continue...");
@@ -124,13 +125,13 @@ namespace exerciseCountries
             {
                 Land smallestDensityCountry = LandLista.Aggregate((minDensityCountry, nextCountry) =>
                 {
-                    double minDensity = (double)minDensityCountry.Inhabitant / minDensityCountry.Surface;
-                    double nextDensity = (double)nextCountry.Inhabitant / nextCountry.Surface;
+                    int minDensity = (int)minDensityCountry.Inhabitant / minDensityCountry.Surface;
+                    int nextDensity = (int)nextCountry.Inhabitant / nextCountry.Surface;
 
                     return minDensity < nextDensity ? minDensityCountry : nextCountry;
                 });
 
-                double smallestDensity = (double)smallestDensityCountry.Inhabitant / smallestDensityCountry.Surface;
+                int smallestDensity = (int)smallestDensityCountry.Inhabitant / smallestDensityCountry.Surface;
 
                 Console.WriteLine($"Country with the smallest population density:");
                 Console.WriteLine($"{smallestDensityCountry.Name}: Population Density - {smallestDensity} inhabitants per square unit");
